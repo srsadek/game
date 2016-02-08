@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<style type="text/css">
+    .solid {
+        border: solid;
+    }
+
+    .player {
+        height: 175px;
+        background-color: forestgreen;
+    }
+
+    .board {
+        height: 250px;
+    }
+
+    .card {
+        height: 75px;
+        background-color: white;
+    }
+    .pointSummary{
+        height: 175px;
+    }
+</style>
+<div class="jumbotron container-fluid" id="ctrlGame" ng-controller="ctrlGame">
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3 player solid" id="playerC"> playerC</div>
+        <div class="col-lg-3 solid pointSummary" id="pointsTable"> <strong>Points Summary</strong> 
+            <div class="col-lg-12 solid">
+                <div class="row">
+                    <div class="col-lg-10">
+                        player A
+                    </div>
+                    <div class="col-lg-2 active">
+                        {{playerAPts}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-10">
+                        player C
+                    </div>
+                    <div class="col-lg-2 active">
+                        {{playerCPts}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-10">
+                        Team 1 - Grand Total
+                    </div>
+                    <div class="col-lg-2 active">
+                        <strong> {{playerAPts + playerCPts}} </strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 solid">
+                <div class="row">
+                    <div class="col-lg-10">
+                        player B
+                    </div>
+                    <div class="col-lg-2 active">
+                        {{playerBPts}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-10">
+                        player D
+                    </div>
+                    <div class="col-lg-2 active">
+                        {{playerDPts}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-10">
+                        Team 2 - Grand Total
+                    </div>
+                    <div class="col-lg-2 active">
+                        <strong> {{playerBPts + playerDPts}} </strong>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 player solid board" id="playerD"> playerD </div>
+        <div class="col-lg-6 solid board" id="board" ondrop="drop(event)" ondragover="allowDrop(event)">
+            Board
+
+            <div style="padding-left:25px;padding-top:25px">
+                <div class="row">
+                    <div class="card solid col-sm-3" ng-repeat="card in boardCards">
+                        <div id="{{$index + 'boardCard'+'-'+card.id}}" draggable="true" ondragstart="drag(event)">
+                            {{card.suit}}
+                            <br />
+                            <br />
+                            {{card.name}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 player solid board" id="playerB">playerB</div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3 player solid" id="playerA">
+            playerA
+            <div style="padding-left:25px;padding-top:25px">
+                <div class="row">
+                    <div class="card solid col-sm-3" ng-repeat="card in playerACards">
+                        <div id="{{$index + 'playerACard'+'-'+card.id}}" draggable="true" ondragstart="drag(event)">
+                            {{card.suit}}
+                            <br />
+                            <br />
+                            {{card.name}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
