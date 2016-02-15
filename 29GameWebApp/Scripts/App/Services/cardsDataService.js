@@ -44,6 +44,7 @@
 
     var drawnCards = [];
 
+    // Create a copy of the deck
     angular.copy(deck, playingCards);
 
     var playerACards = [];
@@ -51,14 +52,17 @@
     var playerCCards = [];
     var playerDCards = [];
 
-    var playerCardsArray = [playerACards, playerBCards, playerCCards, playerDCards];
+    var playerCardsArray = [{ player: 'playerA', cards: playerACards },
+                            { player: 'playerB', cards: playerBCards }, 
+                            { player: 'playerC', cards: playerCCards },
+                            { player: 'playerD', cards: playerDCards }];
 
     shuffleCards(playerCardsArray);
 
     function drawNextCardId ()
     {
         // Generate a random number for shuffle draw
-        return Math.floor((Math.random() * 30) + 1);
+        return Math.floor((Math.random() * 31) + 1);
     }
 
     function drawCardsForPlayer(playerCards)
@@ -77,11 +81,12 @@
             var drawnCardIndex = -1;
             angular.forEach(playingCards, function (obj, index) {
                 if (obj.id == nextCardId) {
+                    obj.player = playerCards.player;
                     drawnCardIndex = index;
-                    playerCards.push(obj);
+                    playerCards.cards.push(obj);
                 }
             });
-
+            // Remove the drawn card from the playing cards deck
             if (drawnCardIndex != -1) {
                 playingCards.splice(drawnCardIndex, 1);
             }
@@ -97,7 +102,7 @@
     }
 
     return {
-        data: playerCardsArray
+        data: {playerACards, playerBCards, playerCards, playerDCards}
     };
 
 })

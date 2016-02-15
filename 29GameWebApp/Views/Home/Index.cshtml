@@ -33,7 +33,7 @@
                         player A
                     </div>
                     <div class="col-lg-2 active">
-                        {{playerAPts}}
+                        {{gameApp.playerAPts}}
                     </div>
                 </div>
 
@@ -42,7 +42,7 @@
                         player C
                     </div>
                     <div class="col-lg-2 active">
-                        {{playerCPts}}
+                        {{gameApp.playerCPts}}
                     </div>
                 </div>
 
@@ -51,7 +51,7 @@
                         Team 1 - Grand Total
                     </div>
                     <div class="col-lg-2 active">
-                        <strong> {{playerAPts + playerCPts}} </strong>
+                        <strong> {{gameApp.playerAPts + gameApp.playerCPts}} </strong>
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                         player B
                     </div>
                     <div class="col-lg-2 active">
-                        {{playerBPts}}
+                        {{gameApp.playerBPts}}
                     </div>
                 </div>
 
@@ -71,7 +71,7 @@
                         player D
                     </div>
                     <div class="col-lg-2 active">
-                        {{playerDPts}}
+                        {{gameApp.playerDPts}}
                     </div>
                 </div>
 
@@ -80,7 +80,7 @@
                         Team 2 - Grand Total
                     </div>
                     <div class="col-lg-2 active">
-                        <strong> {{playerBPts + playerDPts}} </strong>
+                        <strong> {{gameApp.playerBPts + gameApp.playerDPts}} </strong>
                     </div>
                 </div>
             </div>
@@ -95,8 +95,8 @@
 
             <div style="padding-left:25px;padding-top:25px">
                 <div class="row">
-                    <div class="card solid col-sm-3" ng-repeat="card in boardCards">
-                        <div id="{{$index + 'boardCard'+'-'+card.id}}" draggable="true" ondragstart="drag(event)">
+                    <div class="card solid col-sm-3" ng-repeat="card in gameApp.boardCards">
+                        <div id="{{$index + 'boardCard'+'-'+card.id}}" >
                             {{card.suit}}
                             <br />
                             <br />
@@ -114,8 +114,8 @@
             playerA
             <div style="padding-left:25px;padding-top:25px">
                 <div class="row">
-                    <div class="card solid col-sm-3" ng-repeat="card in playerACards">
-                        <div id="{{$index + 'playerACard'+'-'+card.id}}" draggable="true" ondragstart="drag(event)">
+                    <div class="card solid col-sm-3" ng-repeat="card in gameApp.playerACards">
+                        <div id="{{$index + '-'+card.player+'-'+card.id}}" draggable="true" ondragstart="drag(event)">
                             {{card.suit}}
                             <br />
                             <br />

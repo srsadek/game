@@ -15,17 +15,27 @@ function drop(ev) {
     // The Card Id is the Id of the draggable div and is prefixed with '-'
     var elemArray = data.split('-');
     var dragCardId = elemArray[elemArray.length - 1];
-
+    var player = elemArray[elemArray.length - 2];
     //Get the controller scope 
     var controllerElement = document.getElementById('ctrlGame');
     var controllerScope = angular.element(controllerElement).scope();
 
     controllerScope.$apply(function () {
+
+        var playerCardArray = [];
+
+        // which player drew the card out 
+        switch (player) {
+            case 'playerA':
+                playerCardArray = controllerScope.playerACards;
+                break;
+        }
+
         // Find the Card , remove it from the players bundle and add it to the board bundle
-        angular.forEach(controllerScope.playerACards, function (obj, index) {
+        angular.forEach(playerCardArray, function (obj, index) {
             if (obj.id == dragCardId) {
                 controllerScope.boardCards.push(obj);
-                controllerScope.playerACards.splice(index, 1);
+                playerCardArray.splice(index, 1);
             }
         });
 
